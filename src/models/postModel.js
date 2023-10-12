@@ -15,7 +15,7 @@ const postSchema = new Schema({
     required: true,
   },
   attachments: [{
-    type: String // Array of strings representing image URLs or file paths
+    type: String 
   }],
   created_at: {
     type: Date,
@@ -25,9 +25,10 @@ const postSchema = new Schema({
     type: Number,
     default: 0,
   },
-  
-  
-  // Add other room-related fields here if needed
+  comments: [{
+    type: Schema.Types.ObjectId,
+    ref: 'comments',
+  }],
 });
 
 const Post = mongoose.model('Post', postSchema);

@@ -14,11 +14,11 @@ export const createRoom = async (req, res) => {
     // Randomly generate a shareid
     const shareid = generateRandomString(8);
     req.body.shareid = shareid;
-    console.log(req.body);
+
     const newRoom = new Room(req.body);
     await newRoom.save();
 
-    res.status(200).json({ message: "OK" });
+    res.status(200).json({ roomid:  shareid});
   } catch (err) {
     if (err.name === "ValidationError") {
       res.status(400).json({ error: "Bad Request" });

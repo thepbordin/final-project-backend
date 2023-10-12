@@ -1,30 +1,30 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 const Schema = mongoose.Schema;
-
 const userSchema = new Schema({
   username: {
     type: String,
     required: true,
     unique: true,
-    trim: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
+    trim: true
   },
   password: {
     type: String,
-    required: true,
+    required: true
   },
-  created_at: {
-    type: Date,
-    default: Date.now,
-  },
-  // Add other user-related fields here if needed
+  rooms: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Room'
+  }],
+  posts: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Post'
+  }],
+  likedPosts: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Post'
+  }]
 });
 
 const User = mongoose.model('User', userSchema);
 
-module.exports = User;
+ export default User;
